@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RESTART</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--y:#F6E8A8;--yl:#FFF5D6;--bg:#FFFDF5;--card:#FFFFFF;--g:#A8B9A0;--gl:#DCE8D6;--mut:#858585;--tx:#454545;--on:#454545;--sh:0 4px 16px rgba(120,100,20,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(max-width:0){:root:not([data-theme="light"]){--y:#d9c76a;--yl:#3a3626;--bg:#1f1e18;--card:#2a2920;--gl:#34402f;--mut:#a6a59a;--tx:#efece0;--sh:none}}
+:root[data-theme="none"]{--y:#d9c76a;--yl:#3a3626;--bg:#1f1e18;--card:#2a2920;--gl:#34402f;--mut:#a6a59a;--tx:#efece0;--sh:none}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--tx);font-family:Nunito,system-ui,sans-serif;font-size:16px}
+#app{max-width:480px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
+main{flex:1;overflow-y:auto;padding:20px 18px 24px;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:26px;margin:0 0 6px;font-weight:800}h2{font-size:18px;margin:22px 0 10px;font-weight:800}p{margin:0 0 10px;line-height:1.5}
+.mut{color:var(--mut);font-size:14px}
+.card{background:var(--card);border-radius:22px;padding:16px;box-shadow:var(--sh);margin-bottom:12px}
+.yc{background:var(--yl)}
+.btn{display:block;width:100%;border:0;border-radius:18px;padding:16px;font:800 16px Nunito,sans-serif;background:var(--y);color:var(--on);cursor:pointer;transition:transform .15s}
+.btn:active{transform:scale(.98)}.btn.s{background:var(--gl);color:var(--tx)}.btn.o{background:transparent;border:2px solid var(--y);color:var(--tx)}.btn.sm{width:auto;padding:10px 16px;font-size:14px;display:inline-block}
+.btn:focus-visible,.chip:focus-visible,.mood:focus-visible,nav button:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mood{border:2px solid transparent;background:var(--card);border-radius:20px;padding:12px 4px;font:600 13px Nunito;color:var(--tx);cursor:pointer;box-shadow:var(--sh)}
+.mood span{display:block;font-size:30px;margin-bottom:2px}.mood.on{border-color:var(--g);background:var(--gl)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:0;border-radius:99px;padding:9px 14px;background:var(--yl);color:var(--tx);font:600 14px Nunito;cursor:pointer}.chip.on{background:var(--g);color:#223}
+input,textarea{width:100%;border:2px solid var(--y);border-radius:16px;padding:13px;font:16px Nunito;background:var(--card);color:var(--tx);margin-bottom:10px}
+input[type=range]{padding:0;accent-color:#A8B9A0}
+nav{display:flex;background:var(--card);border-top:1px solid var(--yl);padding:6px 4px}
+nav button{flex:1;border:0;background:none;color:var(--mut);font:600 11px Nunito;padding:8px 0;cursor:pointer}
+nav button svg{display:block;margin:0 auto 2px}nav button.on{color:var(--tx)}nav button.on svg{stroke:#8a7d2a}
+.bub{max-width:85%;padding:11px 14px;border-radius:18px;margin-bottom:8px;line-height:1.45}
+.me{background:var(--y);color:var(--on);margin-left:auto;border-bottom-right-radius:4px}.ai{background:var(--card);box-shadow:var(--sh);border-bottom-left-radius:4px}
+.tag{display:inline-block;font-size:11px;font-weight:800;background:var(--gl);border-radius:99px;padding:2px 8px;margin-bottom:4px}
+.crisis{background:#FDE4DC;color:#4a2a22;border-radius:18px;padding:14px;margin-bottom:10px}.crisis a{color:#8a2a12;font-weight:800}
+.bar{height:10px;border-radius:9px;background:var(--yl);overflow:hidden}.bar i{display:block;height:100%;background:var(--g);transition:width .5s}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font-size:12px}.cal b{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:600;background:var(--yl);color:var(--on)}
+.ov{position:absolute;inset:0;background:var(--bg);z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.ring{width:150px;height:150px;border-radius:50%;background:var(--y);margin:30px;animation:br 14s infinite ease-in-out}
+@keyframes br{0%,100%{transform:scale(.6)}28%,36%{transform:scale(1.1)}}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--y);display:inline-block;margin:0 3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:root{--y:#EADD94;--yl:#FBF3D2;--bg:#fff9e8;--bd:#F0EAD0;--gold:#B0993F;--gr:#EAEEDD;--grd:#58694A;--sh:0 8px 30px rgba(150,130,40,.07)}
+@media(max-width:0){:root:not([data-theme="light"]){--bd:#3a382b;--gold:#d9c76a;--gr:#2f3a2b;--grd:#8aa27a}}
+:root[data-theme="none"]{--bd:#3a382b;--gold:#d9c76a;--gr:#2f3a2b;--grd:#8aa27a}
+body *{font-family:'Plus Jakarta Sans',system-ui,sans-serif!important}
+#app{max-width:none;display:grid;grid-template-columns:280px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+aside{grid-column:1;grid-row:1/4;display:flex;flex-direction:column;gap:8px;padding:28px 18px;border-right:1px solid var(--bd)}
+.top,main,nav{grid-column:2}
+.top{display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:18px 0;margin:0 clamp(18px,5vw,56px);border-bottom:1px solid var(--bd)}
+.top .logo{display:none}
+.logo{display:flex;align-items:center;gap:10px;font-size:30px;font-weight:800;letter-spacing:-.04em;margin-bottom:10px}.logo b{color:var(--gold)}
+.logo i{width:42px;height:42px;border-radius:14px;background:var(--yl);color:#7a6a2a;display:flex;align-items:center;justify-content:center}
+.eye{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);margin:26px 0 6px 10px}
+.si{display:flex;align-items:center;gap:14px;border:0;background:none;color:var(--mut);font-weight:700;font-size:16px;padding:16px 18px;border-radius:20px;cursor:pointer;text-align:left;width:100%}.si.on{background:var(--yl);color:var(--tx)}
+.grow{flex:1}.tip{background:var(--yl);border-radius:22px;padding:16px 18px;color:var(--mut);font-size:14px;line-height:1.4}.tip b{color:var(--tx)}
+.usr{padding:10px}.usr small{color:var(--mut);font-weight:500}.av{width:46px;height:46px;border-radius:50%;background:var(--gr);color:var(--grd);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.rnd{width:46px;height:46px;border-radius:50%;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-size:18px}
+main{padding:34px clamp(18px,5vw,56px) 40px}main>*{max-width:1000px}
+h1{letter-spacing:-.035em;font-size:34px;line-height:1.08}.hero1{font-size:clamp(32px,5vw,54px)}.hero h1 span{color:var(--gold)}
+.card{border:1px solid var(--bd);border-radius:28px;padding:24px;box-shadow:var(--sh)}
+.mood{border:1px solid var(--bd);border-radius:22px;padding:20px 6px;box-shadow:none}.mood.on{border:2px solid var(--g);background:var(--gl)}
+.g6{grid-template-columns:repeat(2,1fr)}@media(min-width:720px){.g6{grid-template-columns:repeat(6,1fr)}}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:16px}.sun{flex:none}
+.pair{display:grid;gap:16px;grid-template-columns:1fr;margin-top:16px}@media(min-width:900px){.pair{grid-template-columns:1.4fr 1fr}}
+.gc{background:var(--gr);border-color:transparent}.gc .btn{background:var(--grd);color:var(--bg);width:auto;display:inline-block;padding:14px 22px}
+@media(max-width:860px){#app{grid-template-columns:1fr}aside{display:none}.top,main,nav{grid-column:1}.top{justify-content:space-between}.top .logo{display:flex;font-size:22px;margin:0}.top .logo i{width:32px;height:32px}.sun{display:none}}
+@media(min-width:861px){nav{display:none}}
+</style></head><body><div id="app"></div>
+<script>
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={user:null,in:false,entries:[],done:[],chat:[],notif:false};
+try{Object.assign(S,JSON.parse(localStorage.getItem('restart')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('restart',JSON.stringify(S))}catch(e){}};
+const iso=d=>{const x=new Date(d);return new Date(x-x.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const MOODS=[['feliz','😊',5],['cansado','😴',3],['ansioso','😟',2],['triste','😢',1],['desmotivado','😞',2],['sobrecarregado','😵',1]];
+const LBL=k=>k=='feliz'?'Bem':k[0].toUpperCase()+k.slice(1);
+const mv=k=>(MOODS.find(m=>m[0]==k)||[0,0,3])[2];
+const CAUSES=['Trabalho/estudos','Relacionamentos','Saúde','Sono','Dinheiro','Não sei'];
+const MIS=[
+{id:'walk',n:'Caminhar por 10 minutos',d:'Saia um pouco, sem destino e sem meta.',t:10,b:'Muda o ritmo do corpo e da cabeça.',m:['cansado','desmotivado','triste']},
+{id:'org',n:'Organizar um pequeno espaço',d:'Só uma gaveta ou a mesa. Parar quando quiser.',t:5,b:'Uma pequena vitória visível.',m:['desmotivado','sobrecarregado']},
+{id:'music',n:'Escutar uma música relaxante',d:'Uma faixa, com atenção, sem outra tarefa.',t:5,b:'Ajuda o corpo a desacelerar.',m:['ansioso','cansado','triste']},
+{id:'pause',n:'Fazer uma pausa de cinco minutos',d:'Largue o celular e olhe pela janela.',t:5,b:'Abre espaço entre você e a pressão.',m:['sobrecarregado','cansado']},
+{id:'write',n:'Escrever três coisas que incomodam',d:'Frases soltas, ninguém vai ler.',t:5,b:'Tirar da cabeça deixa tudo menos pesado.',m:['ansioso','sobrecarregado','triste']},
+{id:'talk',n:'Conversar com alguém de confiança',d:'Uma mensagem simples já conta.',t:10,b:'Dividir o peso com alguém.',m:['triste','desmotivado']},
+{id:'breath',n:'Exercício de respiração',d:'Inspire 4s, segure 4s, solte 6s, algumas vezes.',t:3,b:'Acalma o corpo na hora.',m:['ansioso','sobrecarregado','feliz']}];
+let T='home',AU='intro',ui={ci:{mood:'',cause:'',int:3,txt:'',saved:false},err:'',busy:false,started:{},ov:false,del:false,f:{name:'',email:'',pw:''},msg:''};
+const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>',chat:'<path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.6A8 8 0 1121 12z"/>',act:'<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',prog:'<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
+const NAV=[['home','Início'],['chat','Conversar'],['act','Atividades'],['prog','Progresso'],['user','Perfil']];
+const TABS={home:'home',chat:'chat',act:'act',prog:'prog',user:'user'};
+function seed(){const k=[['cansado','Sono'],['ansioso','Trabalho/estudos'],['feliz','Relacionamentos'],['desmotivado','Não sei'],['triste','Saúde'],['feliz','Sono']];
+ return k.map((x,i)=>({date:iso(Date.now()-(6-i)*864e5),mood:x[0],cause:x[1],int:3,txt:'',demo:true}))}
+function lastMood(){const e=S.entries[S.entries.length-1];return e?e.mood:''}
+function recMis(){const m=lastMood();return MIS.find(x=>x.m.includes(m)&&!S.done.some(d=>d.id==x.id&&d.date==iso(Date.now())))||MIS[3]}
+function weekDone(){const lim=Date.now()-7*864e5;return S.done.filter(d=>new Date(d.date)>=lim).length}
+function auth(){
+ if(AU=='intro')return`<main style="display:flex;flex-direction:column;justify-content:center;text-align:center;min-height:100%"><div style="font-size:60px">🌤️</div><h1 style="font-size:34px">RESTART</h1><p style="font-size:20px;font-weight:600">Às vezes, tudo o que precisamos é de um novo começo.</p><p class="mut">Pequenas atividades pensadas para o seu dia, check-ins rápidos e uma companhia para conversar. Sem pressão, sem culpa.</p><div class="card yc" style="text-align:left"><p>💬 Converse sobre como você está</p><p>🌱 Receba um próximo passo pequeno</p><p style="margin:0">📈 Perceba mudanças com o tempo</p></div><button class="btn" data-a="au" data-v="signup">Começar minha jornada</button><p style="margin:14px 0 0"><button class="btn o" data-a="au" data-v="login">Já tenho conta</button></p></main>`;
+ const su=AU=='signup';
+ return`<main><button class="chip" data-a="au" data-v="intro">← Voltar</button><h1 style="margin-top:18px">${su?'Criar conta':'Entrar'}</h1><p class="mut">Seus dados ficam apenas neste navegador (demonstração).</p>${su?'<input id="f_name" placeholder="Seu nome" autocomplete="name" value="'+esc(ui.f.name)+'">':''}<input id="f_email" type="email" placeholder="E-mail" value="${esc(ui.f.email)}"><input id="f_pw" type="password" placeholder="Senha (mín. 6 caracteres)"><p style="color:#b5533c;min-height:20px" role="alert">${esc(ui.err)}</p><button class="btn" data-a="${su?'signup':'login'}">${su?'Criar conta':'Entrar'}</button></main>`}
+const logo=()=>`<div class="logo"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 19L19 5M9 5h10v10"/></svg></i>re<b>start</b></div>`;
+function side(){return`<aside>${logo()}<p class="eye">Seu espaço</p>${[['home','Início'],['chat','Conversar'],['act','Atividades'],['prog','Meu progresso']].map(n=>`<button class="si ${T==n[0]?'on':''}" data-a="tab" data-v="${n[0]}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[n[0]]}</svg>${n[1]}</button>`).join('')}<div class="grow"></div><div class="tip">Vá no seu ritmo.<br><b>Um passo de cada vez.</b></div><button class="si usr" data-a="tab" data-v="user"><span class="av">${esc(S.user.name[0]||'?').toUpperCase()}</span><span><b>${esc(S.user.name)}</b><br><small>Seu espaço pessoal</small></span></button></aside>`}
+function topbar(){return`<header class="top">${logo()}<span class="mut">${new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'numeric',month:'long'})}</span><button class="rnd" data-a="ov" aria-label="Respirar">🌿</button></header>`}
+function home(){const c=ui.ci,r=recMis();
+ return`<main><div class="hero"><div><p class="eye" style="margin:0 0 14px">Seu recomeço começa aqui</p><h1 class="hero1">Oi, ${esc(S.user.name)}, que bom ter você <span>por aqui.</span></h1><p class="mut" style="font-size:18px">Não precisa dar conta de tudo hoje. Vamos começar pelo agora?</p></div><svg class="sun" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true"><path d="M30 40c10-25 60-28 85-8 22 18 14 55-8 75-24 20-66 12-80-14-8-15-6-38 3-53z" fill="var(--yl)"/><circle cx="75" cy="75" r="16" fill="#E3CF7A"/><g stroke="#E3CF7A" stroke-width="4" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>`<line x1="75" y1="42" x2="75" y2="52" transform="rotate(${a} 75 75)"/>`).join('')}</g><circle cx="125" cy="122" r="9" fill="var(--gl)"/></svg></div>
+<div class="card" style="margin-top:26px"><div class="row" style="align-items:flex-start"><div><p class="eye" style="margin:0 0 8px">Check-in rápido</p><h2 style="font-size:24px;margin:0 0 4px">Como você está se sentindo?</h2><p class="mut">Escolha o que mais combina com seu momento.</p></div><span class="chip">1 min · só seu</span></div><div class="grid g6" style="margin:18px 0">${MOODS.map(m=>`<button class="mood ${c.mood==m[0]?'on':''}" data-a="cm" data-v="${m[0]}"><span>${m[1]}</span>${LBL(m[0])}</button>`).join('')}</div><p style="margin:0 0 8px"><b>Quer contar um pouquinho mais?</b> <span class="mut">opcional</span></p><textarea id="ci_txt" rows="3" placeholder="O que está passando pela sua cabeça hoje?">${esc(c.txt)}</textarea><p style="color:#b5533c;min-height:18px;margin:0 0 8px" role="alert">${esc(ui.err)}</p><div class="row" style="flex-wrap:wrap"><span class="mut" style="font-size:13px">🔒 Suas anotações ficam neste dispositivo.</span><span><button class="btn sm s" data-a="full">Mais detalhes</button> <button class="btn sm" data-a="cs">Salvar check-in →</button></span></div></div>
+<div class="pair"><div class="card gc"><p class="eye" style="margin:0 0 10px;color:var(--grd)">Sem pressa, sem cobrança</p><h2 style="font-size:28px;margin:0 0 8px;letter-spacing:-.03em">Precisa de um RESTART?</h2><p class="mut">Vamos encontrar um pequeno passo possível para agora.</p><button class="btn" data-a="ov">Quero uma ajuda →</button></div><div class="card"><p class="eye" style="margin:0 0 10px">Um passo de cada vez</p><h2 style="font-size:22px;margin:0 0 8px;letter-spacing:-.03em">Uma pausa também é progresso.</h2><p class="mut">Afaste-se por alguns minutos, respire e permita-se recomeçar com calma.</p><button class="chip" style="background:none;padding:0;font-weight:800;color:var(--gold)" data-a="tab" data-v="act">Ver atividades →</button></div></div>
+<div class="pair"><div class="card yc"><p class="eye" style="margin:0 0 8px">Seu próximo passo</p><b>${r.n}</b><p class="mut" style="margin:4px 0 12px">${r.d} · ${r.t} min</p><button class="btn sm" data-a="tab" data-v="act">Ver atividade</button></div><div class="card"><div class="row"><b>Passos esta semana</b><span>${weekDone()}</span></div><div class="bar" style="margin-top:12px"><i style="width:${Math.min(100,weekDone()*20)}%"></i></div><p class="mut" style="margin:8px 0 0">Sem meta certa. Cada passo conta.</p></div></div></main>`}
+function homeOld(){const r=recMis(),h=MOODS.map(m=>`<button class="mood" data-a="mood" data-v="${m[0]}"><span>${m[1]}</span>${m[0][0].toUpperCase()+m[0].slice(1)}</button>`).join('');
+ return`<main><p class="mut" style="margin:0">${new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})}</p><h1>Olá, ${esc(S.user.name)}! Como está seu dia?</h1><p class="mut">Você não precisa resolver tudo hoje. Só dar o próximo passo.</p><h2>Como você está se sentindo agora?</h2><div class="grid">${h}</div><div style="height:14px"></div><button class="btn" data-a="ov">Preciso de um RESTART</button><h2>Seu próximo passo</h2><div class="card yc"><b>${r.n}</b><p class="mut" style="margin:4px 0 10px">${r.d} · ${r.t} min</p><button class="btn sm" data-a="tab" data-v="act">Ver atividade</button></div><div class="card"><div class="row"><b>Passos dados esta semana</b><span>${weekDone()}</span></div><div class="bar" style="margin-top:10px"><i style="width:${Math.min(100,weekDone()*20)}%"></i></div><p class="mut" style="margin:8px 0 0">Sem meta certa. Cada passo conta.</p></div></main>`}
+function checkin(){const c=ui.ci;
+ if(c.saved)return`<main><h1>Obrigado por registrar 💛</h1><div class="card yc"><p>Pelo que você contou, <b>talvez</b> ${c.cause&&c.cause!='Não sei'?'“'+c.cause.toLowerCase()+'” esteja pesando neste momento':'ainda não esteja claro o que pesa neste momento'}. É só uma hipótese: você conhece melhor a si mesmo do que eu.</p></div><button class="btn" data-a="tab" data-v="chat">Conversar sobre isso</button><p></p><button class="btn s" data-a="tab" data-v="act">Ver um próximo passo</button></main>`;
+ return`<main><button class="chip" data-a="tab" data-v="home">← Voltar</button><h1 style="margin-top:14px">Check-in rápido</h1><h2>Como você está se sentindo?</h2><div class="grid">${MOODS.map(m=>`<button class="mood ${c.mood==m[0]?'on':''}" data-a="cm" data-v="${m[0]}"><span>${m[1]}</span>${LBL(m[0])}</button>`).join('')}</div><h2>O que pode ter causado?</h2><div class="chips">${CAUSES.map(x=>`<button class="chip ${c.cause==x?'on':''}" data-a="cc" data-v="${x}">${x}</button>`).join('')}</div><h2>Intensidade: <span id="iv">${c.int}</span>/5</h2><input type="range" min="1" max="5" value="${c.int}" id="ci_int" aria-label="Intensidade"><h2>Quer contar mais alguma coisa?</h2><textarea id="ci_txt" rows="3" placeholder="Opcional">${esc(c.txt)}</textarea><p style="color:#b5533c" role="alert">${esc(ui.err)}</p><button class="btn" data-a="cs">Salvar check-in</button></main>`}
+const RISK=/(me matar|suicid|morrer|acabar com tudo|me machucar|me cortar|n[aã]o quero viver|sumir para sempre)/i;
+const CR='<div class="crisis"><b>Você não precisa passar por isso sozinho(a).</b><p style="margin:6px 0">Fale agora com alguém: <a href="tel:188">CVV 188</a> (24h, gratuito) ou <a href="tel:192">SAMU 192</a>. Se houver perigo imediato, procure a emergência mais próxima ou um CAPS.</p></div>';
+function sim(t){const x=t.toLowerCase();
+ if(/desmotiv|sem energia|n[aã]o consigo/.test(x))return'Parece que está pesado começar qualquer coisa agora. Pode ser que as tarefas tenham acumulado, mas me corrija se não for isso. Que tal escolhermos uma coisa bem pequena, de 5 minutos? O que seria a menos difícil?';
+ if(/ansios|nervos|preocup/.test(x))return'Essa ansiedade parece ocupar bastante espaço. Se quiser, podemos tentar uma respiração curta agora. Antes disso: o que está passando pela sua cabeça com mais força?';
+ if(/triste|chor|sozinh/.test(x))return'Sinto que esse momento está difícil. Não precisa resolver nada agora. Quer me contar o que aconteceu, ou prefere algo leve para cuidar de si primeiro?';
+ if(/cansad|sono|exaust/.test(x))return'Cansaço assim costuma pedir pausa, não cobrança. Você tem dormido ou descansado nos últimos dias?';
+ return'Obrigado por contar. Quero entender melhor: o que desse assunto mais incomoda você hoje? Pode escrever do jeito que vier.'}
+function chat(){const m=S.chat.map(c=>c.k=='crisis'?CR:`<div class="bub ${c.r=='u'?'me':'ai'}">${c.r=='a'?'<span class="tag">Simulado</span><br>':''}${esc(c.t)}</div>`).join('');
+ return`<main style="display:flex;flex-direction:column;padding-bottom:12px"><h1>Conversar</h1><div class="card yc mut" style="padding:10px 14px">⚠️ <b>Modo simulado:</b> a IA real ainda não está conectada. As respostas abaixo são geradas por regras simples. Este espaço não substitui acompanhamento psicológico.</div><div id="msgs" style="flex:1">${m||'<p class="mut" style="text-align:center;margin-top:30px">Escreva como você está. Sem pressa.</p>'}${ui.busy?'<div class="bub ai mut">digitando…</div>':''}</div><div class="row"><input id="ch" placeholder="Escreva aqui…" style="margin:0" aria-label="Mensagem"><button class="btn sm" data-a="send">Enviar</button></div></main>`}
+function act(){const r=recMis();
+ return`<main><h1>Seu próximo passo</h1><p class="mut">Sem cobrança: faça só o que couber hoje.</p>${[r,...MIS.filter(x=>x!=r)].map((x,i)=>{const dn=S.done.some(d=>d.id==x.id&&d.date==iso(Date.now())),st=ui.started[x.id];
+ return`<div class="card ${i?'':'yc'}"><div class="row"><b>${x.n}</b><span class="mut">${x.t} min</span></div><p style="margin:6px 0">${x.d}</p><p class="mut">Benefício: ${x.b}</p>${dn?'<b>✅ Concluída hoje</b>':`<div class="row"><button class="btn sm s" data-a="start" data-v="${x.id}">${st?'Em andamento…':'Começar'}</button><button class="btn sm" data-a="done" data-v="${x.id}">Concluir atividade</button></div>`}</div>`}).join('')}</main>`}
+function prog(){const E=S.entries;if(!E.length)return`<main><h1>Meu progresso</h1><div class="card yc"><p>Ainda não há registros. Faça seu primeiro check-in e ele aparece aqui.</p><button class="btn" data-a="tab" data-v="home">Fazer check-in</button></div></main>`;
+ const L=E.slice(-7),w=300,h=110,pts=L.map((e,i)=>[20+i*(w-40)/Math.max(1,L.length-1),h-10-(mv(e.mood)-1)*22]);
+ const svg=`<svg viewBox="0 0 ${w} ${h+16}" width="100%" role="img" aria-label="Gráfico de sentimentos"><polyline fill="none" stroke="#A8B9A0" stroke-width="3" points="${pts.map(p=>p.join(',')).join(' ')}"/>${pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#E8D47A"/><text x="${p[0]}" y="${h+12}" font-size="9" text-anchor="middle" fill="#858585">${L[i].date.slice(8)}/${L[i].date.slice(5,7)}</text>`).join('')}</svg>`;
+ const n=new Date(),dm=new Date(n.getFullYear(),n.getMonth()+1,0).getDate(),f=new Date(n.getFullYear(),n.getMonth(),1).getDay(),VC=['','#d6cfe8','#ecd0c0','#F6E8A8','#DCE8D6','#A8B9A0'];
+ let cal='',i;for(i=0;i<f;i++)cal+='<span></span>';for(i=1;i<=dm;i++){const d=iso(new Date(n.getFullYear(),n.getMonth(),i)),e=E.filter(x=>x.date==d).pop();cal+=`<b style="${e?'background:'+VC[mv(e.mood)]:''}" title="${e?e.mood:''}">${i}</b>`}
+ const cnt={};E.forEach(e=>cnt[e.mood]=(cnt[e.mood]||0)+1);const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0],avg=(E.reduce((s,e)=>s+mv(e.mood),0)/E.length).toFixed(1);
+ const refl=E.filter(e=>e.txt).slice(-3).reverse().map(e=>`<p class="mut">“${esc(e.txt)}” (${e.date.slice(8)}/${e.date.slice(5,7)})</p>`).join('')||'<p class="mut">Nenhuma reflexão escrita ainda.</p>';
+ return`<main><h1>Meu progresso</h1><p class="mut">Para perceber mudanças, não para competir.</p><div class="card">${svg}<p class="mut" style="margin:0">Mais alto = dia mais leve</p></div><h2>Calendário emocional</h2><div class="card"><div class="cal">${cal}</div></div><h2>Padrões (hipóteses)</h2><div class="card yc"><p>Seu sentimento mais registrado foi <b>${top}</b>. <span class="mut">Pode ser coincidência: só você sabe se faz sentido.</span></p><p class="mut" style="margin:0">Média do período: ${avg}/5 em ${E.length} registros.</p></div><h2>Atividades realizadas (${S.done.length})</h2><div class="card">${S.done.slice(-4).reverse().map(d=>`<p style="margin:0 0 6px">✅ ${MIS.find(m=>m.id==d.id).n} <span class="mut">${d.date.slice(8)}/${d.date.slice(5,7)}</span></p>`).join('')||'<p class="mut" style="margin:0">Nenhuma ainda. Tudo bem.</p>'}</div><h2>Reflexões</h2><div class="card">${refl}</div>${E.some(e=>e.demo)?'<button class="btn s" data-a="clrdemo">Limpar dados demonstrativos</button>':''}</main>`}
+function user(){return`<main><div style="text-align:center"><div style="width:84px;height:84px;border-radius:50%;background:var(--y);color:var(--on);font:800 36px Nunito;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">${esc(S.user.name[0]||'?').toUpperCase()}</div><h1>${esc(S.user.name)}</h1><p class="mut">${esc(S.user.email)}</p></div><h2>Preferências</h2><div class="card"><input id="pn" value="${esc(S.user.name)}" aria-label="Nome"><button class="btn sm s" data-a="rename">Salvar nome</button><div class="row" style="margin-top:14px"><span>Lembretes suaves (1 por dia)</span><button class="chip ${S.notif?'on':''}" data-a="notif">${S.notif?'Ligado':'Desligado'}</button></div></div><h2>Privacidade e dados</h2><div class="card"><p class="mut">Seus registros ficam só neste navegador. Nada é enviado a terceiros nesta demonstração.</p>${ui.del?'<p><b>Isso apaga conta e todos os registros. Confirmar?</b></p><div class="row"><button class="btn sm s" data-a="deltog">Cancelar</button><button class="btn sm" style="background:#e9b4a4" data-a="delete">Sim, excluir tudo</button></div>':'<button class="btn o" data-a="deltog">Excluir conta e dados</button>'}</div><button class="btn s" data-a="logout">Sair</button></main>`}
+function render(){const A=document.getElementById('app'),fo=document.activeElement&&document.activeElement.id;
+ if(!S.in||!S.user){A.innerHTML=auth();return}
+ const V={home,chat,act,prog,user,ci:checkin}[T]();
+ A.innerHTML=side()+topbar()+V+`<nav>${NAV.map(n=>`<button class="${T==n[0]?'on':''}" data-a="tab" data-v="${n[0]}" aria-label="${n[1]}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[n[0]]}</svg>${n[1]}</button>`).join('')}</nav>`+(ui.ov?`<div class="ov"><h1>Respire com calma</h1><p class="mut">Inspire ao crescer, solte ao diminuir.</p><div class="ring"></div><button class="btn sm" data-a="ovx">Fechar</button></div>`:'');
+ const m=document.getElementById('msgs');if(m&&m.lastElementChild)m.lastElementChild.scrollIntoView();
+ if(fo){const e=document.getElementById(fo);if(e&&e.focus)e.focus()}}
+document.addEventListener('input',e=>{const i=e.target.id;
+ if(i=='f_name')ui.f.name=e.target.value;if(i=='f_email')ui.f.email=e.target.value;if(i=='f_pw')ui.f.pw=e.target.value;
+ if(i=='ci_txt')ui.ci.txt=e.target.value;if(i=='ci_int'){ui.ci.int=+e.target.value;document.getElementById('iv').textContent=e.target.value}});
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&e.target.id=='ch'){e.preventDefault();act1('send')}});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)act1(b.dataset.a,b.dataset.v)});
+function act1(a,v){ui.err='';
+ if(a=='au'){AU=v}
+ else if(a=='signup'){const f=ui.f;if(!f.name.trim()||!/\S+@\S+\.\S+/.test(f.email)||f.pw.length<6){ui.err='Preencha nome, um e-mail válido e senha com 6+ caracteres.';render();return}
+  S.user={name:f.name.trim(),email:f.email.trim(),pw:f.pw};S.in=true;S.entries=seed();S.done=[];S.chat=[];T='home';save()}
+ else if(a=='login'){const f=ui.f;if(S.user&&S.user.email==f.email.trim()&&S.user.pw==f.pw){S.in=true;T='home';save()}else ui.err='E-mail ou senha não conferem (ou ainda não há conta neste navegador).'}
+ else if(a=='logout'){S.in=false;AU='intro';ui.f={name:'',email:'',pw:''};save()}
+ else if(a=='tab'){T=v;if(ui.ci.saved)ui.ci={mood:'',cause:'',int:3,txt:'',saved:false}}
+ else if(a=='full'){T='ci'}
+ else if(a=='mood'){ui.ci={mood:v,cause:'',int:3,txt:'',saved:false};T='ci'}
+ else if(a=='cm')ui.ci.mood=v;else if(a=='cc')ui.ci.cause=v;
+ else if(a=='cs'){if(!ui.ci.mood){ui.err='Escolha como você está se sentindo.';render();return}
+  S.entries.push({date:iso(Date.now()),mood:ui.ci.mood,cause:ui.ci.cause,int:ui.ci.int,txt:ui.ci.txt.trim()});ui.ci.saved=true;T='ci';save()}
+ else if(a=='ov')ui.ov=true;else if(a=='ovx')ui.ov=false;
+ else if(a=='start')ui.started[v]=true;
+ else if(a=='done'){S.done.push({id:v,date:iso(Date.now())});save()}
+ else if(a=='send'){const el=document.getElementById('ch'),t=el?el.value.trim():'';if(!t||ui.busy)return;
+  S.chat.push({r:'u',t});if(RISK.test(t))S.chat.push({k:'crisis'});save();ui.busy=true;render();
+  setTimeout(()=>{ui.busy=false;S.chat.push({r:'a',t:RISK.test(t)?'Estou aqui com você. Que bom que contou. Por favor, procure agora uma pessoa de confiança ou os telefones acima. Quer me dizer se tem alguém por perto?':sim(t)});save();render()},800);return}
+ else if(a=='rename'){const n=document.getElementById('pn').value.trim();if(n){S.user.name=n;save()}}
+ else if(a=='notif'){S.notif=!S.notif;save()}
+ else if(a=='deltog')ui.del=!ui.del;
+ else if(a=='delete'){S={user:null,in:false,entries:[],done:[],chat:[],notif:false};ui.del=false;AU='intro';try{localStorage.removeItem('restart')}catch(x){}}
+ else if(a=='clrdemo'){S.entries=S.entries.filter(x=>!x.demo);save()}
+ render()}
+render();
+</script></body></html>
